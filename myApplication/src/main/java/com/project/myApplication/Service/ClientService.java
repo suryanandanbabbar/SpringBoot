@@ -47,4 +47,19 @@ public class ClientService {
 
         throw new IDNotFoundException();
     }
+
+    public ResponseEntity<ResponseStructure<Client>> findById(int id) {
+        Client c = dao.findById(id);
+
+        if (c != null) {
+            ResponseStructure<Client> res = new ResponseStructure<>();
+            res.setStatusCode(HttpStatus.OK.value());
+            res.setMessage("Successfully fetched the client");
+            res.setData(c);
+
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+
+        throw new IDNotFoundException();
+    }
 }
