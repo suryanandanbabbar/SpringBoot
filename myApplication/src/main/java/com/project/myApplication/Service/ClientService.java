@@ -1,0 +1,25 @@
+package com.project.myApplication.Service;
+
+import com.project.myApplication.DAO.ClientDAO;
+import com.project.myApplication.DTO.Client;
+import com.project.myApplication.Response.ResponseStructure;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClientService {
+
+    @Autowired
+    private ClientDAO dao;
+
+    public ResponseEntity<ResponseStructure<Client>> saveCl(Client c) {
+        ResponseStructure<Client> res = new ResponseStructure<>();
+        res.setStatusCode(HttpStatus.OK.value());
+        res.setMessage("Successfully saved the client");
+        res.setData(dao.saveClient(c));
+
+        return new ResponseEntity<ResponseStructure<Client>>(res, HttpStatus.OK);
+    }
+}
