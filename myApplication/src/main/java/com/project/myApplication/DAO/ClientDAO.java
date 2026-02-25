@@ -5,6 +5,7 @@ import com.project.myApplication.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ClientDAO {
@@ -19,5 +20,14 @@ public class ClientDAO {
     public String getByName(String name) {
         List<Client> list = clres.findByName(name);
         return "Records are: " + list;
+    }
+
+    public String deleteById(int id) {
+        Optional<Client> op = clres.findById(id);
+        if(op.isPresent()) {
+            clres.delete(op.get());
+            return "ID is deleted";
+        }
+        return "ID doesn't exist";
     }
 }
