@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class ClientService {
@@ -76,5 +77,20 @@ public class ClientService {
         }
 
         throw new IDNotFoundException();
+    }
+
+    public ResponseEntity<ResponseStructure<List<Client>>> updateByName(String name, Client updatedClient) {
+        List<Client> updatedClients = dao.updateByName(name, updatedClient);
+
+        if (updatedClients != null) {
+            ResponseStructure<List<Client>> res = new ResponseStructure<>();
+            res.setStatusCode(HttpStatus.OK.value());
+            res.setMessage("Successfully updated client(s)");
+            res.setData(updatedClients);
+
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+
+        throw new IDNotFoundException("No client found with given name");
     }
 }
