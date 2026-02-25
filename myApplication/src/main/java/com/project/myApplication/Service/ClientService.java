@@ -22,4 +22,13 @@ public class ClientService {
 
         return new ResponseEntity<ResponseStructure<Client>>(res, HttpStatus.OK);
     }
+
+    public ResponseEntity<ResponseStructure<String>> getByName(String name) {
+        ResponseStructure<String> res = new ResponseStructure<>();
+        res.setStatusCode(HttpStatus.OK.value());
+        res.setMessage("Successfully fetched the client");
+        res.setData(dao.getByName(name));
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
 }
