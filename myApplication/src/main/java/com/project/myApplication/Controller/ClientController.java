@@ -28,4 +28,9 @@ public class ClientController {
     public ResponseEntity<ResponseStructure<String>> deleteClientById(@PathVariable int id) {
         return clser.deleteById(id);
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ResponseStructure<Client>> getClientById(@PathVariable int id) {
+        return clser.findById(id);
+    }
 }
