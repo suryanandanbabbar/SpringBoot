@@ -20,7 +20,7 @@ public class ClientController {
     }
 
     @GetMapping
-    public ResponseEntity<ResponseStructure<String>> getClientByName(String name) {
+    public ResponseEntity<ResponseStructure<String>> getClientByName() {
         return clser.getByName("surya");
     }
 }
