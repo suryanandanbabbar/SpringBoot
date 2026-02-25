@@ -2,6 +2,7 @@ package com.project.myApplication.Service;
 
 import com.project.myApplication.DAO.ClientDAO;
 import com.project.myApplication.DTO.Client;
+import com.project.myApplication.Exception.IDNotFoundException;
 import com.project.myApplication.Response.ResponseStructure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,5 +31,20 @@ public class ClientService {
         res.setData(dao.getByName(name));
 
         return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    public ResponseEntity<ResponseStructure<String>> deleteById(int id) {
+        ResponseStructure<String> res = new ResponseStructure<>();
+        Client c = dao.deleteById(id);
+
+        if(c != null) {
+            res.setStatusCode(HttpStatus.OK.value());
+            res.setMessage("Successfully deleted the client");
+            res.setData("Data deleted");
+
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+
+        throw new IDNotFoundException();
     }
 }
