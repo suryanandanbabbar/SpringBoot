@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class HandleException {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(IDNotFoundException.class)
     public ResponseEntity<ResponseStructure<String>> handle(IDNotFoundException e) {
         ResponseStructure<String> res = new ResponseStructure<>();
 
