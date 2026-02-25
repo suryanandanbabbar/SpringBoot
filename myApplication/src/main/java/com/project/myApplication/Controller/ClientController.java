@@ -23,4 +23,9 @@ public class ClientController {
     public ResponseEntity<ResponseStructure<String>> getClientByName() {
         return clser.getByName("surya");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponseStructure<String>> deleteClientById(@PathVariable int id) {
+        return clser.deleteById(id);
+    }
 }
