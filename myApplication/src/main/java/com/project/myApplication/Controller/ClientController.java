@@ -51,4 +51,19 @@ public class ClientController {
 
         return clser.updateById(id, updatedClient);
     }
+
+    @GetMapping("/age/{age}")
+    public ResponseEntity<ResponseStructure<List<Client>>> getClientByAge(
+            @PathVariable int age) {
+
+        return clser.findByAge(age);
+    }
+
+    @PutMapping("/age/{age}")
+    public ResponseEntity<ResponseStructure<List<Client>>> updateClientByAge(
+            @PathVariable int age,
+            @RequestBody Client updatedClient) {
+
+        return clser.updateByAge(age, updatedClient);
+    }
 }

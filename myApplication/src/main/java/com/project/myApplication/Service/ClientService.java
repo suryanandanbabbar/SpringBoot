@@ -93,4 +93,38 @@ public class ClientService {
 
         throw new IDNotFoundException("No client found with given name");
     }
+
+    public ResponseEntity<ResponseStructure<List<Client>>> findByAge(int age) {
+
+        List<Client> clients = dao.findByAge(age);
+
+        if (!clients.isEmpty()) {
+
+            ResponseStructure<List<Client>> res = new ResponseStructure<>();
+            res.setStatusCode(HttpStatus.OK.value());
+            res.setMessage("Successfully fetched client(s)");
+            res.setData(clients);
+
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+
+        throw new IDNotFoundException("No client found with given age");
+    }
+
+    public ResponseEntity<ResponseStructure<List<Client>>> updateByAge(int age, Client updatedClient) {
+
+        List<Client> updatedClients = dao.updateByAge(age, updatedClient);
+
+        if (updatedClients != null) {
+
+            ResponseStructure<List<Client>> res = new ResponseStructure<>();
+            res.setStatusCode(HttpStatus.OK.value());
+            res.setMessage("Successfully updated client(s)");
+            res.setData(updatedClients);
+
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+
+        throw new IDNotFoundException("No client found with given age");
+    }
 }

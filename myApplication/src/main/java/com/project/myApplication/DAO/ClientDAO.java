@@ -70,4 +70,26 @@ public class ClientDAO {
 
         return null;
     }
+
+    public List<Client> findByAge(int age) {
+        return clres.findByAge(age);
+    }
+
+    public List<Client> updateByAge(int age, Client updatedClient) {
+
+        List<Client> clients = clres.findByAge(age);
+
+        if (!clients.isEmpty()) {
+
+            for (Client c : clients) {
+                c.setName(updatedClient.getName());
+                c.setEmail(updatedClient.getEmail());
+                c.setAge(updatedClient.getAge());
+            }
+
+            return clres.saveAll(clients);
+        }
+
+        return null;
+    }
 }
