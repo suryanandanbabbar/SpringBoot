@@ -33,4 +33,12 @@ public class ClientController {
     public ResponseEntity<ResponseStructure<Client>> getClientById(@PathVariable int id) {
         return clser.findById(id);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseStructure<Client>> updateClientById(
+            @PathVariable int id,
+            @RequestBody Client updatedClient) {
+
+        return clser.updateById(id, updatedClient);
+    }
 }
