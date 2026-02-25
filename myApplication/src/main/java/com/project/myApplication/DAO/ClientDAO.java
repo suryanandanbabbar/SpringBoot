@@ -53,4 +53,21 @@ public class ClientDAO {
 
         return null;
     }
+
+    public List<Client> updateByName(String name, Client updatedClient) {
+        List<Client> clients = clres.findByName(name);
+
+        if (!clients.isEmpty()) {
+
+            for (Client c : clients) {
+                c.setName(updatedClient.getName());
+                c.setEmail(updatedClient.getEmail());
+                c.setAge(updatedClient.getAge());
+            }
+
+            return clres.saveAll(clients);
+        }
+
+        return null;
+    }
 }
