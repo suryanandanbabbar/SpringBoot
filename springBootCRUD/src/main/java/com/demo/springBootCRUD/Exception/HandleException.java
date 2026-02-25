@@ -14,7 +14,12 @@ public class HandleException {
 
 //  Response in Postman
     @ExceptionHandler(NullPointerException.class)
-    public void handle1() {
-        System.out.println("Exception handled");
+    public ResponseEntity<ResponseStructure<String>> handle2() {
+        ResponseStructure<String> res = new ResponseStructure<>();
+        res.setStatusCode(HttpStatus.BAD_REQUEST.value());
+        res.setMessage("Cannot invoke length method from null");
+        res.setData("Name is null");
+
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
     }
 }
