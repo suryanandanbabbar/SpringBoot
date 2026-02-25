@@ -29,4 +29,12 @@ public class ClientDAO {
         }
         return null;
     }
+
+    public Client findById(int id) {
+        Optional<Client> op = clres.findById(id);
+        if(op.isPresent()) {
+            return op.get();
+        }
+        return null;
+    }
 }
