@@ -22,12 +22,11 @@ public class ClientDAO {
         return "Records are: " + list;
     }
 
-    public String deleteById(int id) {
+    public Client deleteById(int id) {
         Optional<Client> op = clres.findById(id);
         if(op.isPresent()) {
-            clres.delete(op.get());
-            return "ID is deleted";
+            return op.get();
         }
-        return "ID doesn't exist";
+        return null;
     }
 }
