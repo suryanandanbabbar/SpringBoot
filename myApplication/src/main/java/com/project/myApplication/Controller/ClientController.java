@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("client")
 public class ClientController {
@@ -22,6 +24,14 @@ public class ClientController {
     @GetMapping
     public ResponseEntity<ResponseStructure<String>> getClientByName() {
         return clser.getByName("surya");
+    }
+
+    @PutMapping("/name/{name}")
+    public ResponseEntity<ResponseStructure<List<Client>>> updateClientByName(
+            @PathVariable String name,
+            @RequestBody Client updatedClient) {
+
+        return clser.updateByName(name, updatedClient);
     }
 
     @DeleteMapping("/{id}")
