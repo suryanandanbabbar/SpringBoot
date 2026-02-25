@@ -37,4 +37,20 @@ public class ClientDAO {
         }
         return null;
     }
+
+    public Client updateById(int id, Client updatedClient) {
+        Optional<Client> optional = clres.findById(id);
+
+        if (optional.isPresent()) {
+            Client ex = optional.get();
+
+            ex.setName(updatedClient.getName());
+            ex.setEmail(updatedClient.getEmail());
+            ex.setAge(updatedClient.getAge());
+
+            return clres.save(ex);
+        }
+
+        return null;
+    }
 }
