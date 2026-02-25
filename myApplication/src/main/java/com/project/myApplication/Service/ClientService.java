@@ -62,4 +62,19 @@ public class ClientService {
 
         throw new IDNotFoundException();
     }
+
+    public ResponseEntity<ResponseStructure<Client>> updateById(int id, Client updatedClient) {
+        Client c = dao.updateById(id, updatedClient);
+
+        if (c != null) {
+            ResponseStructure<Client> res = new ResponseStructure<>();
+            res.setStatusCode(HttpStatus.OK.value());
+            res.setMessage("Successfully updated the client");
+            res.setData(c);
+
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+
+        throw new IDNotFoundException();
+    }
 }
