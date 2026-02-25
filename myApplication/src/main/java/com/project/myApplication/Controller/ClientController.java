@@ -5,10 +5,7 @@ import com.project.myApplication.Response.ResponseStructure;
 import com.project.myApplication.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("client")
@@ -20,5 +17,10 @@ public class ClientController {
     @PostMapping
     public ResponseEntity<ResponseStructure<Client>> saveClient(@RequestBody Client c) {
         return clser.saveCl(c);
+    }
+
+    @GetMapping
+    public ResponseEntity<ResponseStructure<String>> getClientByName(String name) {
+        return clser.getByName("surya");
     }
 }
